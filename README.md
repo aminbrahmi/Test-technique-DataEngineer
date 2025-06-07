@@ -1,4 +1,4 @@
- Test Technique Data Engineer : Détection de contenus liés au harcèlement
+Test Technique Data Engineer : Détection de contenus liés au harcèlement
 
 Ce projet vise à démontrer l'application d'un pipeline de collecte, traitement et visualisation de données sur le thème du harcèlement à partir de Reddit, Twitter et Telegram. Le pipeline inclut le scraping, le prétraitement NLP, l'indexation dans Elasticsearch et la visualisation via Kibana.
 
@@ -18,31 +18,32 @@ Ce projet vise à démontrer l'application d'un pipeline de collecte, traitement
 
 -Tests unitaires de validation des scripts
 
-Architecture
+## 📁 Structure du projet
 
+```bash
 Test-technique-DataEngineer/
+├── config/                  # Configuration API (config.ini)
+├── scripts/                 # Scripts principaux
+│   ├── scraper.py           # Scraping Reddit, Twitter, Telegram
+│   ├── preprocessing.py     # Nettoyage et lemmatisation
+│   ├── nlp_pipeline.py      # Langue + sentiment
+│   └── es_ingest.py         # Indexation Elasticsearch
 │
-├── config/              # Configuration API (config.ini)
-├── scripts/             # Scripts principaux
-│   ├── scraper.py       # Scraping Reddit, Twitter, Telegram
-│   ├── preprocessing.py # Nettoyage et lemmatisation
-│   ├── nlp_pipeline.py  # Langue + sentiment
-│   └── es_ingest.py     # Indexation Elasticsearch
-│
-├── tests/               # Tests unitaires
+├── tests/                   # Tests unitaires
 │   ├── test_scraper.py
 │   ├── test_preprocessing.py
 │   └── test_nlp_pipeline.py
 │
-├── docs/                # Données et visualisations
-│   ├── Kibana Dashboard/        # Captures écran Kibana
-│   ├── mongo_results.json       # Export MongoDB
-│   └── es_results.json          # Export Elasticsearch
+├── docs/                    # Données et visualisations
+│   ├── Kibana Dashboard/    # Captures écran Kibana
+│   ├── mongo_results.json   # Export MongoDB
+│   └── es_results.json      # Export Elasticsearch
 │
-├── Dockerfile           # Environnement d'exécution
-├── docker-compose.yml   # Lancement des services
-├── requirements.txt     # Librairies Python
-└── README.md            # Documentation actuelle
+├── Dockerfile               # Environnement d'exécution
+├── docker-compose.yml       # Lancement des services
+├── requirements.txt         # Librairies Python
+└── README.md                # Documentation actuelle
+```
 
 1. 💿 Scraping des données (scripts/scraper.py)
 
@@ -114,21 +115,23 @@ TextBlob + GoogleTranslator : facile à intégrer pour de l'analyse de sentiment
 
 Docker Compose : isolation de chaque service (Mongo, ES, Kibana, Scraper)
 
-
 🔧 Lancement manuel
 
 # Scraping
+
 docker exec -it scraper python scripts/scraper.py
 
 # Nettoyage
+
 docker exec -it scraper python scripts/preprocessing.py
 
 # NLP
+
 docker exec -it scraper python scripts/nlp_pipeline.py
 
 # Indexation
-python scripts/es_ingest.py
 
+python scripts/es_ingest.py
 
 📚 Tests unitaires (dossier /tests)
 
